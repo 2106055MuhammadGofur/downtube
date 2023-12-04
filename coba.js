@@ -1,1 +1,1 @@
-alert('yyy')
+alert('dasd')
