@@ -5,13 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-const downloadRouter = require('./routes/download');
+const downloadMp4Router = require('./routes/downmp4');
+const downloadMp3Router = require('./routes/downmp3');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 
 
@@ -20,11 +20,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, '/views')));
 
 app.use('/Homepage', indexRouter);
 // app.use('/users', usersRouter);
-app.use('/Download', downloadRouter);
+app.use('/DownloadMP3', downloadMp3Router);
+app.use('/DownloadMP4', downloadMp4Router);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
